@@ -166,6 +166,8 @@ def main(unused_argv):
   assert vocab.CheckVocab(data.SENTENCE_START) > 0
   assert vocab.CheckVocab(data.SENTENCE_END) > 0
 
+  tf.logging.set_verbosity(tf.logging.INFO)
+
   batch_size = 4
   if FLAGS.mode == 'decode':
     batch_size = FLAGS.beam_size
@@ -174,7 +176,7 @@ def main(unused_argv):
       mode=FLAGS.mode,  # train, eval, decode
       min_lr=0.01,  # min learning rate.
       lr=0.15,  # learning rate
-      batch_size=batch_size,
+      batch_size=FLAGS.beam_size,
       enc_layers=4,
       enc_timesteps=120,
       dec_timesteps=30,
