@@ -277,7 +277,7 @@ class Seq2SeqAttentionModel(object):
     feed = {
         self._enc_top_states: enc_top_states,
         self._dec_in_state:
-            np.squeeze(np.array(dec_init_states)),
+            np.array(dec_init_states),
         self._abstracts:
             np.transpose(np.array([latest_tokens])),
         self._abstract_lens: np.ones([len(dec_init_states)], np.int32)}
